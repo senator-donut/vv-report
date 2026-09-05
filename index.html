@@ -491,16 +491,38 @@
     }
 
     @media (max-width: 600px) {
-      header { padding: 10px 16px; }
-      header h1 { font-size: 1.1rem; }
-      .header-meta { font-size: .72rem; margin-top: 2px; }
-      .stats { gap: 5px; }
-      .stat { padding: 6px 10px; min-width: 60px; }
-      .stat-val { font-size: 1.1rem; }
-      .stat-label { font-size: .62rem; }
+      header { padding: 8px 16px 6px; }
+      header h1 { font-size: 1rem; }
+      .header-inner { gap: 8px; }
+      .header-meta { font-size: .68rem; margin-top: 1px; gap: 6px; flex-wrap: wrap; }
+      .status-badge { font-size: .68rem; padding: 1px 8px; }
+
+      /* stats become a single swipeable row of pills instead of a 4-row block */
+      .stats {
+        flex: 1 0 100%;
+        flex-wrap: nowrap;
+        gap: 6px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+      .stats::-webkit-scrollbar { display: none; }
+      .stat {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+        min-width: 0;
+        padding: 5px 11px;
+        border-radius: 999px;
+        border-width: 1px;
+      }
+      .stat-val   { font-size: .95rem; }
+      .stat-label { font-size: .68rem; margin-top: 0; text-transform: none; letter-spacing: 0; white-space: nowrap; }
+
       main   { padding: 16px; }
-      nav    { padding: 0 16px; }
-      nav a  { padding: 10px 12px; font-size: .78rem; }
       .grid  { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
     }
   </style>
@@ -521,11 +543,11 @@
         <div class="stat-val">1,937</div>
         <div class="stat-label">All Items</div>
       </button>
-      <button class="stat" data-view="sale">
+      <button class="stat active" data-view="sale">
         <div class="stat-val">541</div>
         <div class="stat-label">On Sale</div>
       </button>
-      <button class="stat active" data-view="deals40">
+      <button class="stat" data-view="deals40">
         <div class="stat-val">467</div>
         <div class="stat-label">≥40% Off</div>
       </button>
@@ -60731,7 +60753,7 @@
 
   var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
   var activeFilters = { store: 'all', fresh: 'all', dept: 'all', pclass: 'all', badge: 'all', tier: 'all' };
-  var viewFilter = 'deals40';
+  var viewFilter = 'sale';
   var searchQuery = '';
   var viewMeta = {
     all:     { emoji: '📦', label: 'All Items' },
