@@ -517,7 +517,7 @@
       </div>
     </div>
     <div class="stats">
-      <button class="stat" data-view="all">
+      <button class="stat active" data-view="all">
         <div class="stat-val">2,609</div>
         <div class="stat-label">All Items</div>
       </button>
@@ -525,7 +525,7 @@
         <div class="stat-val">473</div>
         <div class="stat-label">On Sale</div>
       </button>
-      <button class="stat active" data-view="deals40">
+      <button class="stat" data-view="deals40">
         <div class="stat-val">351</div>
         <div class="stat-label">≥40% Off</div>
       </button>
@@ -81020,7 +81020,7 @@
 
   var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
   var activeFilters = { store: 'all', fresh: 'all', dept: 'all', pclass: 'all', badge: 'all', tier: 'all' };
-  var viewFilter = 'deals40';
+  var viewFilter = 'all';
   var searchQuery = '';
   var viewMeta = {
     all:     { emoji: '📦', label: 'All Items' },
